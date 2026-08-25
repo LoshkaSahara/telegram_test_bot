@@ -7,7 +7,7 @@ def session_open():
     session = requests.Session()
     return session
 
-def close_sesion(session):
+def session_close(session):
     session.close
     
 def get_querry(session, endpoint):
@@ -18,7 +18,7 @@ def main():
     session = session_open()
     get_response = get_querry(session,"/endpoints")
     print(get_response.text)
-    close_sesion(session)
+    session_close(session)
     
 if __name__ == "__main__":
     main()

@@ -76,6 +76,12 @@ def remove_file(file_name):
         print("—" * 120)
         print(f"❌ Файл не найден: {file_name}")
 
+def get_content_type(url):
+    if url[-3:] == "png":
+        return "png"
+    elif url[-3:] == "gif":
+        return "gif"
+        
 def main():
     # Создание базовой папки для скачивания файлов
     create_defeault_download_folder()
@@ -104,6 +110,7 @@ def main():
     elif artist_name != "Unknown":
         print(f"Имя художника - {artist_name}")
     content_url = result[0].get("url", "Unknown")
+    print(get_content_type(content_url))
     
     # Сохранение файла
     file_name = content_save(session, content_url)

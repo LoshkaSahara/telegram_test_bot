@@ -110,7 +110,7 @@ def main():
     elif artist_name != "Unknown":
         print(f"Имя художника - {artist_name}")
     content_url = result[0].get("url", "Unknown")
-    print(get_content_type(content_url))
+    # print(f"Формат скачанного файла - {get_content_type(content_url)}")
     
     # Сохранение файла
     file_name = content_save(session, content_url)

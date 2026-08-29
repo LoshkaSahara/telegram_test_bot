@@ -55,25 +55,34 @@ def send_anime(message):
     if content_type == "png":
         if file_name and isinstance(file_name, str) and os.path.exists(file_name):
             with open(file_name, "rb") as photo_file:
-                bot.send_photo(message.chat.id, photo=photo_file, caption=caption)
+                try:
+                    bot.send_photo(message.chat.id, photo=photo_file, caption=caption)
+                except Exception as e:
+                    print(f"❌Не удалось отправить картинку.\nТекст ошибки - {e}")
+                    bot.send_message(message.chat.id, f"❌Не удалось отправить картинку.\nТекст ошибки - {e}")
+                    
             if file_name != None:
                 remove_file(file_name)
             else:
-                print("Файла для удаления не существует")
+                print("❌Файла для удаления не существует")
         else:
-            bot.send_message(message.chat.id, "Не удалось найти или сохранить файл.")
+            bot.send_message(message.chat.id, "❌Не удалось найти или сохранить файл.")
 
 
     elif content_type == "gif":
         if file_name and isinstance(file_name, str) and os.path.exists(file_name):
             with open(file_name, "rb") as gif_file:
-                bot.send_animation(message.chat.id, animation=gif_file, caption=caption)
+                try:
+                    bot.send_animation(message.chat.id, animation=gif_file, caption=caption)
+                except Exception as e:
+                    print(f"❌Не удалось отправить гиф.\nТекст ошибки - {e}")
+                    bot.send_message(message.chat.id,f"❌Не удалось отправить гиф.\nТекст ошибки - {e}")
             if file_name != None:
                 remove_file(file_name)
             else:
-                print("Файла для удаления не существует")
+                print("❌Файла для удаления не существует")
         else:
-            bot.send_message(message.chat.id, "Не удалось найти или сохранить файл.")
+            bot.send_message(message.chat.id, "❌Не удалось найти или сохранить файл.")
 
             
 
